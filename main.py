@@ -18,8 +18,8 @@ def weather():
     url = "https://api.openweathermap.org/data/2.5/weather"
     response = requests.get(url, params={"q": city, "appid": WEATHER_API , "units" : "metric"})
     data = response.json()
-    if data["cod"] != 200:
-     return render_template("index.html", error="City not found!")
+    if data["cod"] != 200 or "country" not in data["sys"]:
+     return render_template("index.html", error="Please enter a valid city name!", city=None)
 
     description = data["weather"][0]["description"]
     temp = round(data["main"]["temp"])
