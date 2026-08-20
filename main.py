@@ -25,7 +25,7 @@ def weather():
     temp = round(data["main"]["temp"])
     humidity = data["main"]["humidity"]
     wind_speed = data["wind"]["speed"]
-    country_code = data["sys"]["country"]
+    country_code = data["sys"].get("country", "africa is not  a city")
     return render_template("index.html", city=city, temp=temp, humidity=humidity, description=description, wind_speed=wind_speed, country_code=country_code)
     
 
