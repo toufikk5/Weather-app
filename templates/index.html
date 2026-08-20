@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="container text-center" style="max-width: 500px;">
+        <h1 class="mb-4">🌤️ Weather App</h1>
+        
+        <form method="POST" action="/weather" class="d-flex gap-2 mb-4">
+            <input type="text" name="city" placeholder="Enter city name..." class="form-control">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        {% if error %}
+         <h2 class="text-danger">{{ error }}</h2>
+        {% endif %}
+
+        {% if city %}
+        <div class="card bg-secondary text-white p-4 rounded-4">
+            <h2 class="text-capitalize">{{ city }}, {{ country_code }}</h2>
+            <p class="fs-5 text-capitalize">{{ description }}</p>
+            <h1 class="display-1">{{ temp }}°C</h1>
+            <div class="d-flex justify-content-center gap-4 mt-3">
+                <span>💧 {{ humidity }}%</span>
+                <span>💨 {{ wind_speed }} m/s</span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
